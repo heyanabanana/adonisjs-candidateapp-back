@@ -21,7 +21,7 @@
 import Route from '@ioc:Adonis/Core/Route';
 
 Route.get('/', async () => {
-  return 'Hi there!!\n' + 'prueba fabulosa';
+  return 'Hi there!!\n' + '/api/register -> get account' + '/api/login -> get token';
 });
 
 Route.group(() => {
