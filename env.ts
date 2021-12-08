@@ -15,6 +15,8 @@
 import Env from '@ioc:Adonis/Core/Env';
 
 export default Env.rules({
+  HOST: Env.schema.string.optional({ format: 'host' }),
+  PORT: Env.schema.number.optional(),
   DB_CONNECTION: Env.schema.string(),
   PG_HOST: Env.schema.string({ format: 'host' }),
   PG_PORT: Env.schema.number(),
