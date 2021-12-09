@@ -10,7 +10,7 @@ export default class Skill extends BaseModel {
   public name: string;
 
   @hasMany(() => Experience)
-  public experience: HasMany<typeof Experience>;
+  public experiences: HasMany<typeof Experience>;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;
