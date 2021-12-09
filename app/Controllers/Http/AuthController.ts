@@ -25,7 +25,7 @@ export default class AuthController {
       const token = await auth.use('api').attempt(email, password, {
         expiresIn: '1day',
       });
-      return token.toJSON();
+      return response.ok({ token, user: auth.user });
     } catch {
       return response.badRequest('Invalid credentials');
     }
