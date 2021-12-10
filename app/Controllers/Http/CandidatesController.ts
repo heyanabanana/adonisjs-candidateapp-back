@@ -29,7 +29,15 @@ export default class CandidatesController {
 
     return response.json(candidates);
   }
+  //filtro por skill y experience & id
+  public async candidatesWithSkillsAndExperienceId({ params, response }: HttpContextContract) {
+    const candidate = await Candidate.findOrFail(params.id);
+    await candidate.load('experiences', (expQuery) => {
+      expQuery.preload('skill');
+    });
 
+    return response.json(candidate);
+  }
   //CREATE
   public async store({ request, response }: HttpContextContract) {
     const body = request.body(); // Validate
