@@ -23,7 +23,9 @@ export default class CandidatesController {
 
   //filtro por skill y experience
   public async candidatesWithSkillsAndExperience({ response }: HttpContextContract) {
-    const candidates = await Candidate.query().preload('experiences');
+    const candidates = await Candidate.query().preload('experiences', (expQuery) => {
+      expQuery.preload('skill');
+    });
 
     return response.json(candidates);
   }
