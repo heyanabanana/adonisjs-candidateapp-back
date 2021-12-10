@@ -2,8 +2,17 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 import Experience from 'App/Models/Experience';
 
 export default class ExperiencesController {
-  public async index() {
-    return Experience.all(); //select * from EXPERIENCE
+  public async index({ request }) {
+    // Devuelve Experiences con Skill=skillId
+    if (request.input('skill_id') && request.input('level')) {
+      return Experience.query()
+        .where('skill_id', request.input('skill_id'))
+        .andWhere('level', request.input('level'));
+    } else if (request.input('skill_id')) {
+      return Experience.query().where('skill_id', request.input('skill_id'));
+    } else {
+      return Experience.all();
+    }
   }
 
   //CREATE

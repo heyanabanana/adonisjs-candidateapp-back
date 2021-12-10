@@ -7,6 +7,20 @@ export default class CandidatesController {
     return Candidate.all();
   }
 
+  //filtro por skill y experiences
+  public async findBySkillsExperiences({ params, response }: HttpContextContract) {
+    const candidates = await Candidate.query().preload('experiences', (expQuery) => {
+      expQuery
+        .where('level', params.level)
+        .preload('skill', (skillQuery) => {
+          skillQuery.where('name', params.name);
+        })
+        .preload('skill');
+    });
+
+    return response.json(candidates);
+  }
+
   //CREATE
   public async store({ request, response }: HttpContextContract) {
     const body = request.body(); // Validate

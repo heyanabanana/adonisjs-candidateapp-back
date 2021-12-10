@@ -10,12 +10,12 @@ export default class Experience extends BaseModel {
   @column()
   public candidateId: number;
   @belongsTo(() => Candidate)
-  public candidates: BelongsTo<typeof Candidate>;
+  public candidate: BelongsTo<typeof Candidate>;
 
   @column()
   public skillId: number;
   @belongsTo(() => Skill)
-  public skills: BelongsTo<typeof Skill>;
+  public skill: BelongsTo<typeof Skill>;
 
   @column()
   public level: number;
