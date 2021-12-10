@@ -36,6 +36,7 @@ Route.group(() => {
   }).middleware('auth');
   Route.get('/candidates/:name/:level', 'CandidatesController.findBySkillsExperiences');
   Route.get('/candidatesfull', 'CandidatesController.candidatesWithSkillsAndExperience');
+  Route.get('/candidatesfull/:id', 'CandidatesController.candidatesWithSkillsAndExperienceId');
 
   // login and register
   Route.post('/register', 'AuthController.register');
